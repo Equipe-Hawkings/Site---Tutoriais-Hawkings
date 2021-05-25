@@ -1,0 +1,9 @@
+site_name: Tutoriais Equipe Hawkings
+site_url: https://equipe-hawkings.github.io/Site---Tutoriais-Hawkings/
+site_author: Equipe Hawkings
+repo_url: https://github.com/Equipe-Hawkings/Site---Tutoriais-Hawkings
+edit_uri: edit/main/docs/
+nav:
+    - Home: index.md
+    - Sobre: sobre.md
+theme: readthedocs
