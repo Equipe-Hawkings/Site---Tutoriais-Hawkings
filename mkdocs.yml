@@ -1,9 +1,12 @@
 site_name: Tutoriais Equipe Hawkings
-site_url: https://equipe-hawkings.github.io/Site---Tutoriais-Hawkings/
+site_url: https://equipe-hawkings.github.io/Tutoriais_Hawkings/
 site_author: Equipe Hawkings
-repo_url: https://github.com/Equipe-Hawkings/Site---Tutoriais-Hawkings
+repo_url: https://github.com/Equipe-Hawkings/Tutoriais_Hawkings
 edit_uri: edit/main/docs/
 nav:
-    - Home: index.md
-    - Sobre: sobre.md
+   - Início: index.md
+   - Sobre: sobre.md
+   - 'Cursos':
+     - 'Introdução ao ROS e Gazebo': 'Introdução-ao-ROS-e-Gazebo.md'
 theme: readthedocs
+
