@@ -1,17 +1,8 @@
-# Welcome to MkDocs
+#<center> Sejam Bem-vindos!!!
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
+Este é um site e repositório da Equipe Hawkings. Nele você encontrará informações sobre o código base de nossos projetos, tutoriais de construção e programação de drones autônomos e passo a passo de cursos dados pela equipe.
+<br/>
 
-## Commands
+Aproveite! E caso tenha necessidade, entre em contato conosco pelas nossas redes sociais ou pelo email: <hawkings.deg@ufla.br>.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
