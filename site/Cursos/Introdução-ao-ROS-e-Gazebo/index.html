@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Equipe Hawkings">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Introdução ao ROS e Gazebo - Tutoriais Equipe Hawkings</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Introdu\u00e7\u00e3o ao ROS e Gazebo";
+    var mkdocs_page_input_path = "Cursos/Introdu\u00e7\u00e3o-ao-ROS-e-Gazebo.md";
+    var mkdocs_page_url = "/Cursos/Introdu\u00e7\u00e3o-ao-ROS-e-Gazebo/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Tutoriais Equipe Hawkings</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../sobre/">Sobre</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Cursos</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Introdução ao ROS e Gazebo</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#1a-parte-tutoriais-ros">1ª Parte: Tutoriais ROS</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#instalacao-da-distribuicao-melodic">Instalação da distribuição Melodic</a></li>
+        
+            <li><a class="toctree-l4" href="#instalacao-e-configuracao-do-ambiente-do-ros">Instalação e configuração do Ambiente do ROS</a></li>
+        
+            <li><a class="toctree-l4" href="#criando-e-construindo-uma-package">Criando e construindo uma Package</a></li>
+        
+            <li><a class="toctree-l4" href="#conhecendo-ros-nodes">Conhecendo ROS Nodes</a></li>
+        
+            <li><a class="toctree-l4" href="#conhecendo-ros-topics">Conhecendo ROS Topics</a></li>
+        
+            <li><a class="toctree-l4" href="#conhecendo-ros-services-e-parameters">Conhecendo ROS Services e Parameters</a></li>
+        
+            <li><a class="toctree-l4" href="#conhecendo-o-ros-launch">Conhecendo o ROS Launch</a></li>
+        
+            <li><a class="toctree-l4" href="#criando-um-ros-msg-e-srv">Criando um ROS msg e srv</a></li>
+        
+            <li><a class="toctree-l4" href="#escrevendo-um-publisher-e-subscriber-simples">Escrevendo um Publisher e Subscriber simples</a></li>
+        
+            <li><a class="toctree-l4" href="#escrevendo-um-service-e-client-simples">Escrevendo um Service e Client simples</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Tutoriais Equipe Hawkings</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Cursos &raquo;</li>
+        
+      
+    
+    <li>Introdução ao ROS e Gazebo</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/Equipe-Hawkings/Tutoriais_Hawkings/edit/main/docs/Cursos/Introdução-ao-ROS-e-Gazebo.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="1a-parte-tutoriais-ros"><center>1ª Parte: Tutoriais ROS</center></h1>
+<p><br/></p>
+<h2 id="instalacao-da-distribuicao-melodic"><em>Instalação da distribuição Melodic</em></h2>
+<p><br/></p>
+<h3 id="configurando-o-sourcelist">Configurando o source.list</h3>
+<p>Configurando o computador para aceitar o software de "packages.ros.org".</p>
+<pre><code>sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" &gt; /etc/apt/sources.list.d/ros-latest.list'
+</code></pre>
+<h3 id="configurando-as-keys">Configurando as keys</h3>
+<pre><code>sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+</code></pre>
+<p>Caso esteja tendo problemas em conectar com o <em>keyserver</em>, você pode tentar substiuindo <code>hkp://pgp.mit.edu:80</code> ou <code>hkp://keyserver.ubuntu.com:80</code> no comando anterior.</p>
+<p>Alternativamente, você pode usar o comando <code>curl</code> ao invés do comando <code>apt-key</code>. Podendo ser útil se estiver atrás de um servidor proxy.</p>
+<pre><code>curl -sSL 'http://keyserver.ubuntu.com/pks/lookup?op=get&amp;search=0xC1CF6E31E6BADE8868B172B4F42ED6FBAB17C654' | sudo apt-key add -
+</code></pre>
+<h3 id="instalacao">Instalação</h3>
+<p>Primeiramente, atualize seu pacote Debian</p>
+<pre><code>sudo apt update
+</code></pre>
+<p>Agora faça a instalação completa da distribuição. Nela está incluso: ROS, rqt, rviz, bibliotecas robot-generic, simuladores 2D/3D e percepção 2D/3D</p>
+<pre><code>sudo apt install ros-melodic-desktop-full
+</code></pre>
+<h3 id="configurando-o-ambiente">Configurando o ambiente</h3>
+<p>É conveniente que as variáveis do ambiente do ROS sejam automaticamente adicionadas à sua sessão <em>bash</em> sempre que uma nova <em>shell</em> é inicializada.</p>
+<pre><code>echo "source /opt/ros/melodic/setup.bash" &gt;&gt; ~/.bashrc
+source ~/.bashrc
+</code></pre>
+<h3 id="dependencias-para-a-build-dos-pacotes">Dependências para a "build" dos pacotes</h3>
+<p>É conveniente instalar ferramentas de comando que permitem que faça downloads de arquivos relacionados ao ROS mais facilmente, com apenas um comando.</p>
+<pre><code> sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
+</code></pre>
+<p>Antes de utilizar essas ferramentas é necessário iniciar o <code>rosdep</code>. Este permite que o sistema faça instalações de dependências das fontes que deseja compilar e ele é necessário para "rodar" alguns componentes do ROS.</p>
+<pre><code>sudo apt install python-rosdep
+sudo rosdep init
+
+
+rosdep update
+</code></pre>
+<p><br/></p>
+<h2 id="instalacao-e-configuracao-do-ambiente-do-ros"><em>Instalação e configuração do Ambiente do ROS</em></h2>
+<p><br/></p>
+<h3 id="criando-um-workspace-para-o-ros">Criando um Workspace para o ROS</h3>
+<p>Criando e fazendo a <em>build</em> de um catkin workspace</p>
+<pre><code>mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/
+catkin_make
+source devel/setup.bash
+</code></pre>
+<p>Para ter certeza que seu workspace está propriamente configurado, tenha certeza que a variável do ambiente <code>ROS_PACKAGE_PATH</code> inclui o diretório em que você está no momento</p>
+<pre><code>echo $ROS_PACKAGE_PATH
+</code></pre>
+<p><br/></p>
+<h2 id="criando-e-construindo-uma-package"><em>Criando e construindo uma Package</em></h2>
+<p><br/></p>
+<h3 id="criando-uma-package-no-catkin-worskpace">Criando uma Package no catkin worskpace</h3>
+<p>Para ser considerada uma Package, o diretório precisa conter os arquivos <code>package.xml</code> e <code>CMakeLists.txt</code>.
+<br/></p>
+<p>E para cria-la é necessário especificar no comando <code>catkin_create_pkg</code> o <code>nome do pacote</code> e a lista de dependências.</p>
+<pre><code># Esse é um exemplo, não tente rodar esse código
+# catkin_create_pkg &lt;nome_da_package&gt; [dependência1] [dependência2] [dependência3]
+</code></pre>
+<p>Portanto, vamos criar uma Package chamada <code>curso</code>.</p>
+<pre><code>cd ~/catkin_ws/src
+catkin_create_pkg curso std_msgs rospy roscpp
+</code></pre>
+<h3 id="realizando-a-build-e-gerando-uma-fonte-para-o-arquivo-de-setup">Realizando a "build" e gerando uma fonte para o arquivo de "setup"</h3>
+<p>Fazendo a <em>build</em> das packages presentes no catkin workspace.</p>
+<pre><code>cd ~/catkin_ws
+catkin_make
+</code></pre>
+<p><br/></p>
+<h2 id="conhecendo-ros-nodes"><em>Conhecendo ROS Nodes</em></h2>
+<p><br/></p>
+<h3 id="download-de-simuladores-simples">Download de simuladores simples</h3>
+<pre><code>sudo apt-get install ros-melodic-ros-tutorials
+</code></pre>
+<h3 id="roscore">Roscore</h3>
+<p>A primeira ação a ser feita sempre que for usar o ROS é inicializar o Roscore</p>
+<pre><code>roscore
+</code></pre>
+<p>Caso o Roscore não inicialize e o terminal retorne uma mensagem sobre falta de permissões, mude recursivamente o "dono" da pasta</p>
+<pre><code>sudo chown -R &lt;seu_username&gt; ~/.ros
+</code></pre>
+<h3 id="utilizando-o-rosrun">Utilizando o rosrun</h3>
+<p>O comando rosrun permite que execute uma node em uma determinada package
+<br/></p>
+<p>Usabilidade:</p>
+<pre><code># Esse é um exemplo, não tente rodar esse código
+# rosrun [nome_da_package] [nome_da_node]
+</code></pre>
+<p>Agora em um novo terminal, vamos executar a node chamada <code>turtlesim_node</code> que inicializa o simulador Turtle Sim.</p>
+<pre><code>rosrun turtlesim turtlesim_node
+</code></pre>
+<h3 id="utilizando-o-rosnode">Utilizando o rosnode</h3>
+<p>O comando <code>rosnode</code> mostra informações sobre as nodes que estão funcionando no momento.
+<br/></p>
+<p>Você pode conferir que ações efetuar pelo comando (em um novo terminal):</p>
+<pre><code>rosnode -h
+</code></pre>
+<p><br/></p>
+<h2 id="conhecendo-ros-topics"><em>Conhecendo ROS Topics</em></h2>
+<p><br/></p>
+<h3 id="controlando-a-tartaruguinha-do-turtle-sim-pelo-teclado">Controlando a tartaruguinha do Turtle Sim pelo teclado</h3>
+<p>Ainda com o Turtle Sim aberto, em um novo terminal execute a node chamada <code>turtle_teleop_key</code>.</p>
+<pre><code>rosrun turtlesim turtle_teleop_key
+</code></pre>
+<p>Agora você pode utilizar o teclado para movimentar a tartaruga. Mas para isso, é necessário que a tela do terminal onde digitou o comando acima esteja selecionada.</p>
+<h3 id="utilizando-o-rqt_graph">Utilizando o <em>rqt_graph</em></h3>
+<p>As nodes <code>turtlesim_node</code> e <code>turtle_teleop_key</code> estão comunicando uma com a outra por meio de um ROS Topic. <code>turtle_teleop_key</code> está "publicando" (<em>publishing</em>) as entradas em um Topic de quando acionamos o teclado, enquanto <code>turtlesim_node</code> está "lendo" ou "inscrevendo" (<em>subscribing</em>) no mesmo Topic para receber o sinal do acionamento do teclado e realizar a ação no simulador.
+<br/></p>
+<p>Podemos perceber isso utilizando o <code>rqt_graph</code> que foi instalado quando instalamos a distribuição Melodic. Ele possui a função de mostrar por meio de um gráfico dinâmico o que está acontecendo no sistema.
+<br/> </p>
+<p>Em um novo terminal digite:</p>
+<pre><code>rosrun rqt_graph rqt_graph
+</code></pre>
+<h3 id="utilizando-o-rostopic-echo">Utilizando o <em>rostopic echo</em></h3>
+<p>O comando <code>rostopic</code> mostra informações sobre ROS Topics
+<br/></p>
+<p>Você pode conferir que ações efetuar pelo comando:</p>
+<pre><code>rostopic -h
+</code></pre>
+<p><code>rostopic echo</code> mostra os dados publicados em um Topic
+<br/></p>
+<p>Usabilidade:</p>
+<pre><code># Esse é um exemplo, não tente rodar esse código
+# rostopic echo [topic]
+</code></pre>
+<p>Vamos observar os dados do <code>command_velocity</code> publicado pela node <code>turtle_teleop_key</code>.</p>
+<pre><code>rostopic echo /turtle1/cmd_vel
+</code></pre>
+<h3 id="utilizando-o-rostopic-type">Utilizando o <em>rostopic type</em></h3>
+<p>O comando <code>rostopic_type</code> retorna o tipo da Message de qualquer Topic sendo publicado.
+<br/></p>
+<p>Usabilidade:</p>
+<pre><code># Esse é um exemplo, não tente rodar esse código
+# rostopic type [topic]
+</code></pre>
+<p>Agora então digite:</p>
+<pre><code>rostopic type /turtle1/cmd_vel
+</code></pre>
+<p>Você deve receber: <code>geometry_msgs/Twist</code>. Com essa informação, nós conseguimos ver os detalhes da Message usando o comando <code>rosmsg</code>:</p>
+<pre><code>rosmsg show geometry_msgs/Twist
+</code></pre>
+<h3 id="utilizando-o-rostopic-pub">Utilizando o <em>rostopic pub</em></h3>
+<p>O comando <code>rostopic pub</code> publica algum dado em um Topic funcionando atualmente.
+<br/></p>
+<p>Usabilidade:</p>
+<pre><code># Esse é um exemplo, não tente rodar esse código
+# rostopic pub [topic] [msg_type] [argumentos]
+</code></pre>
+<p>Vamos enviar uma única mensagem para o Turtle Sim dizendo a ele para se mover com uma velocidade linear de 2.0 e velocidade angular de 1.8.</p>
+<pre><code>rostopic pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, 1.8]'
+</code></pre>
+<p>Podemos fazer com que a tartaruga continue se movimentando infinitamente adicionando <code>-r</code> no comando:</p>
+<pre><code>rostopic pub /turtle1/cmd_vel geometry_msgs/Twist -r 1 -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, -1.8]'
+</code></pre>
+<h3 id="utilizando-o-rqt_plot">Utilizando o <em>rqt_plot</em></h3>
+<p>O <code>rqt_plot</code> gera um gráfico que mostra os dados publicados nos Topics ao longo do tempo:</p>
+<pre><code>rosrun rqt_plot rqt_plot
+</code></pre>
+<p>Adicione na caixa de texto os Topics <code>/turtle1/pose/x</code> e <code>/turlte1/pose/y</code> para ver no gráfico as posições da tartaruga no gráfico ao longo do tempo.</p>
+<p><br/></p>
+<h2 id="conhecendo-ros-services-e-parameters"><em>Conhecendo ROS Services e Parameters</em></h2>
+<p><br/></p>
+<h3 id="utilizando-o-rosservice-call">Utilizando o <em>rosservice call</em></h3>
+<p>O comando <code>rosservice</code> mostra informações sobre ROS Services
+<br/></p>
+<p>Você pode conferir que ações efetuar pelo comando:</p>
+<pre><code>rosservice -h
+</code></pre>
+<p>O <code>rosservice call</code> chama um Service com seus respectivos argumentos
+<br/></p>
+<p>Usabilidade:</p>
+<pre><code># Esse é um exemplo, não tente rodar esse código
+# rosservice call [service] [argumentos]
+</code></pre>
+<p>Vamos chamar um Service que limpa o fundo da node <code>turtlesim_node</code>. Esta ação não necessita de argumentos.</p>
+<pre><code>rosservice call /clear
+</code></pre>
+<p>Agora em um caso onde o Service possui argumentos. Vamos ver quais são eles:</p>
+<pre><code>rosservice type /spawn | rossrv show
+</code></pre>
+<p>Esse Service <code>/spawn</code> nos permite "spawnar" uma nova tartaruga em um dado local e orientação. Agora que sabemos os argumentos necessários, vamos "spawnar" mais uma tartaruga no simulador:</p>
+<pre><code>rosservice call /spawn 2 2 0.2 ""
+</code></pre>
+<h3 id="utilizando-o-rosparam-set-e-o-rosparam-get">Utilizando o <em>rosparam set</em> e o <em>rosparam get</em></h3>
+<p>O comando <code>rosparam</code> mostra informações sobre ROS Parameter Services e permite armazenar e manipular seus dados
+<br/></p>
+<p>Você pode conferir que ações efetuar pelo comando:</p>
+<pre><code>rosparam -h
+</code></pre>
+<p>O <code>rosparam list</code> mostra os parâmetros da node <code>turtlesim_node</code></p>
+<pre><code>rosparam list
+</code></pre>
+<p>Agora, podemos mudar e resgatar um dos valores utilizando o <code>rosparam set</code> e <code>rosparam get</code> respectivamente:
+<br/></p>
+<p>Usabilidade:</p>
+<pre><code># Esse é um exemplo, não tente rodar esse código
+# rosparam set [nome_do_parâmetro]
+# rosparam get [nome_do_parâmetro]
+</code></pre>
+<p>Vamos mudar o valor do "red channel" do sistema de cor RGB do plano de fundo do simulador:</p>
+<pre><code>rosparam set /turtlesim/background_r 150
+</code></pre>
+<p>Para que a mudança faça efeito é necessário chamar o Service <code>clear</code>:</p>
+<pre><code>rosservice call /clear
+</code></pre>
+<p>E para visualizar o conteúdo do todo Parameter Server utilizamos:</p>
+<pre><code>rosparam get /
+</code></pre>
+<p><br/></p>
+<h2 id="conhecendo-o-ros-launch"><em>Conhecendo o ROS Launch</em></h2>
+<p><br/></p>
+<h3 id="utilizando-o-roslaunch">Utilizando o <em>roslaunch</em></h3>
+<p>O comando <code>roslaunch</code> inicializa nodes definidas em um launch file
+<br/></p>
+<p>Usabilidade:</p>
+<pre><code># Esse é um exemplo, não tente rodar esse código
+# roslaunch [package] [nome_do_arquivo.launch]
+</code></pre>
+<p>Para uma maior organização vamos criar primeiramente um diretório chamado "launch" no qual armazenará os "launch files"</p>
+<pre><code>roscd curso
+mkdir launch
+cd launch
+</code></pre>
+<p>Agora criamos um launch file chamado <code>turtlemimic.launch</code></p>
+<pre><code>touch turtlemimic.launch
+</code></pre>
+<p>Copie e cole no arquivo o seguinte código:</p>
+<pre><code>&lt;launch&gt;
+
+  &lt;group ns="turtlesim1"&gt;
+        &lt;node pkg="turtlesim" name="sim" type="turtlesim_node"/&gt;
+  &lt;/group&gt;
+
+  &lt;group ns="turtlesim2"&gt;
+        &lt;node pkg="turtlesim" name="sim" type="turtlesim_node"/&gt;
+  &lt;/group&gt;
+
+  &lt;node pkg="turtlesim" name="mimic" type="mimic"&gt;
+    &lt;remap from="input" to="turtlesim1/turtle1"/&gt;
+    &lt;remap from="output" to="turtlesim2/turtle1"/&gt;
+  &lt;/node&gt;
+
+&lt;/launch&gt;
+</code></pre>
+<p>Você pode editar o arquivo a partir do seguinte comando:</p>
+<pre><code>rosed curso turtlemimic.launch
+</code></pre>
+<p>Após editado o arquivo, vamos executá-lo.</p>
+<pre><code>roslaunch curso turtlemimic.launch
+</code></pre>
+<p>E em um novo terminal vamos digitar um novo comando <code>rostopic</code></p>
+<pre><code>rostopic pub /turtlesim1/turtle1/cmd_vel geometry_msgs/Twist -r 1 -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, -1.8]'
+</code></pre>
+<p>Podemos entender como foi feito a "mímica" abrindo o <code>rqt_graph</code></p>
+<pre><code>rqt_graph
+</code></pre>
+<p><br/></p>
+<h2 id="criando-um-ros-msg-e-srv"><em>Criando um ROS msg e srv</em></h2>
+<p><br/></p>
+<h3 id="criando-uma-msg">Criando uma msg</h3>
+<p>Uma msg é armazenada no diretório "msg" específico. Portanto, vamos criar um.</p>
+<pre><code>roscd curso
+mkdir msg
+cd msg
+</code></pre>
+<p>Vamos agora criar e editar uma msg chamada <code>Num.msg</code></p>
+<pre><code>touch Num.msg
+rosed curso Num.msg
+</code></pre>
+<p>E cole as seguintes tipagens:</p>
+<pre><code>int64 num
+string first_name
+string last_name
+uint8 age
+uint32 score
+</code></pre>
+<h3 id="editando-o-packagexml-e-cmakeliststxt">Editando o <em>package.xml</em> e <em>CMakeLists.txt</em></h3>
+<p>Após criada a msg, tenha certeza de que no arquivo <code>package.xml</code>, as seguintes linhas não estão comentadas</p>
+<pre><code>&lt;build_depend&gt;message_generation&lt;/build_depend&gt;
+&lt;exec_depend&gt;message_runtime&lt;/exec_depend&gt;
+</code></pre>
+<p>E no arquivo <code>CMakeLists.txt</code>, adicione a dependência <code>message generation</code> para que as Messages possam ser geradas.
+<br/></p>
+<p>Você pode fazer isso adicionando na lista de <code>COMPONENTS</code> como mostrado abaixo:</p>
+<pre><code># Não só adicione isso no arquivo, modifique o texto existente adicionando "message_generation" antes dos parênteses de fechamento.
+find_package(catkin REQUIRED COMPONENTS
+    roscpp
+    rospy
+    std_msgs
+    message_generation
+)
+</code></pre>
+<p>Da mesma forma, tenha certeza de que esteja exportando a execução da dependência (removendo o comentário e/ou adicionando as linhas abaixo):</p>
+<pre><code>catkin_package(
+...
+CATKIN_DEPENDS message_runtime ...
+...)
+</code></pre>
+<p>Agora remova o comentário das linhas abaixo e substitua as <code>Message*.msg</code> por <code>Num.msg</code></p>
+<pre><code>#Antes
+
+# add_message_files(
+#   FILES
+#   Message1.msg
+#   Message2.msg
+# )
+
+#Depois
+
+add_message_files(
+  FILES
+  Num.msg
+)
+</code></pre>
+<p>Por fim, precisamos garantir que a funcção <code>generate_messages ()</code> é chamada. Para isso, remova os comentários das seguintes linhas:</p>
+<pre><code>generate_messages(
+DEPENDENCIES
+std_msgs
+)
+</code></pre>
+<h3 id="testando-a-msg-criada">Testando a msg criada</h3>
+<p>Vamos ter certeza de que o ROS possa reconhecer a msg usando o comando <code>rosmsg show</code>
+<br/></p>
+<p>Usabilidade:</p>
+<pre><code># Esse é um exemplo, não tente rodar esse código
+# rosmsg show [tipo da message]
+</code></pre>
+<p>Testando então:</p>
+<pre><code>rosmsg show curso/Num
+</code></pre>
+<p>Você receberá como resposta:</p>
+<pre><code>int64 num
+string first_name
+string last_name
+uint8 age
+uint32 score
+</code></pre>
+<h3 id="criando-um-srv">Criando um srv</h3>
+<p>Uma msg é armazenada no diretório "srv" específico. Portanto, vamos criar um.</p>
+<pre><code>roscd curso
+mkdir srv
+cd srv
+</code></pre>
+<p>Ao invés de criar um srv por nós mesmos, vamos copiar um já existente de uma outra package.
+<br/></p>
+<p>Para isso, o comando <code>roscp</code> é útil para copiar arquivos de uma package a outra
+<br/></p>
+<p>Usabilidade:</p>
+<pre><code># Esse é um exemplo, não tente rodar esse código
+# roscp [nome_da_package] [arquivo_a_copiar] [local_do_arquivo_a_copiar]
+</code></pre>
+<p>Agora podemos copiar um srv da package <code>ropsy_tutorials</code></p>
+<pre><code>roscp rospy_tutorials AddTwoInts.srv srv/AddTwoInts.srv
+</code></pre>
+<h3 id="editando-o-cmake_liststxt">Editando o <em>CMake_Lists.txt</em></h3>
+<p>A dependência <code>message_generation</code> funciona tanto para msg quanto para srv, como anteriormente já foi configurada, não precisamos realizá-la novamente.
+<br/></p>
+<p>A mudança necessária será a remoção dos comentários das linhas abaixo e a substituição dos <code>Service*.srv</code> por <code>AddTwoInts.srv</code> que é o nome do srv copiado.</p>
+<pre><code>#Antes
+
+# add_service_files(
+#   FILES
+#   Service1.srv
+#   Service2.srv
+# )
+
+#Depois
+
+add_service_files(
+  FILES
+  AddTwoInts.srv
+)
+</code></pre>
+<h3 id="testando-o-srv-criado">Testando o srv criado</h3>
+<p>Vamos ter certeza de que o ROS possa reconhecer o srv usando o comando <code>rossrv show</code>
+<br/></p>
+<p>Usabilidade:</p>
+<pre><code># Esse é um exemplo, não tente rodar esse código
+# rossrv show [tipo do service]
+</code></pre>
+<p>Testando então:</p>
+<pre><code>rossrv show curso/AddTwoInts
+</code></pre>
+<p>Você receberá como resposta:</p>
+<pre><code>int64 a
+int64 b
+---
+int64 sum
+</code></pre>
+<h3 id="construcao-dos-arquivos-criados">Construção dos arquivos criados</h3>
+<p>Como criou novas Messages e Services, precisamos fazer a "build" da nossa package novamente:</p>
+<pre><code>cd
+cd catkin_ws
+catkin_make
+</code></pre>
+<p><br/></p>
+<h2 id="escrevendo-um-publisher-e-subscriber-simples"><em>Escrevendo um Publisher e Subscriber simples</em></h2>
+<p><br/></p>
+<h3 id="escrevendo-uma-publisher-node">Escrevendo uma Publisher Node</h3>
+<p>Vamos criar uma node que irá continuamente transmitir uma Message. Para isso, vamos criar um diretório na nossa package onde irá conter os arquivos fontes ou <em>source files</em></p>
+<pre><code>roscd curso
+mkdir -p src
+cd src
+</code></pre>
+<p>Vamos agora criar um arquivo chamado <code>talker.cpp</code> retirado do site:
+<br/></p>
+<p><a href="https://raw.github.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/talker/talker.cpp">https://raw.github.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/talker/talker.cpp</a>
+<br/></p>
+<p>Da mesma forma, vamos abri-lo para podermos analisar o código presente.</p>
+<pre><code>wget https://raw.github.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/talker/talker.cpp
+rosed curso talker.cpp
+</code></pre>
+<p>Caso recebam algum tipo de aviso, role a página até o final e tecle o botão "a" no seu teclado para que possam visualizar o código</p>
+<h3 id="analisando-a-publisher">Analisando a Publisher</h3>
+<p>Agora vamos entender o código</p>
+<pre><code>27 #include "ros/ros.h"
+28
+</code></pre>
+<p><code>ros/ros.h</code> é uma conveniente inclusão que inclui todas as <em>headers</em> necessárias para usar as peças públicas mais comuns do sistema do ROS</p>
+<pre><code>28 #include "std_msgs/String.h"
+29
+</code></pre>
+<p>As linhas acima incluem a Message <code>std_msgs/String</code> que reside na package <code>std_msgs</code>. Essa é uma <em>header</em> gerada automaticamente pelo arquivo <code>String.msg</code> presente na package</p>
+<pre><code>47   ros::init(argc, argv, "talker");
+</code></pre>
+<p>Inicializa o ROS. É onde também especificamos o nome da nossa node. (Nomes de nodes precisam ser únicas em um sistema a funcionar)</p>
+<pre><code>54   ros::NodeHandle n;
+</code></pre>
+<p>Cria um manipulador ou <em>handle</em> para o processamento da node. O primeiro <em>NodeHandle</em> criado vai inicializar a node e o último irá destruí-la limpando os recursos que a node estava usando</p>
+<pre><code>73   ros::Publisher chatter_pub = n.advertise&lt;std_msgs::String&gt;("chatter", 1000);
+</code></pre>
+<p>Diz para o Master que estaremos publicando uma Message do tipo <code>std_msgs/String</code> no Topic <em>chatter</em>. Permite que o Master diga a qualquer node "escutando" no Topic <em>chatter</em> que estaremos publicando dados nesse tópico. O segundo argumento, é o tamanho da fila que estamos publicando. Nesse caso, se estamos publicando muito rapidamente, ele irá "buffar" no máximo 1000 Messages antes de começar a descartar as antigas.
+<br/></p>
+<p><code>NodeHandle::advertise()</code> retorna um objeto <code>ros::Publisher</code> que serve para dois propósitos:</p>
+<ul>
+<li>Conter um método <code>publish()</code> que permite que publiquemos Messages dentro do tópico que foi criado junto</li>
+<li>
+<p>Quando sair do escopo, irá automaticamente desavisar (<em>unadvertise</em>)</p>
+<p>75   ros::Rate loop_rate(10);</p>
+</li>
+</ul>
+<p>Um objeto <code>ros::Rate</code> permite especificar a frequência que você gostaria que o ciclo possua. Ele irá verificar quanto tempo se passou até que a última chamada ao <code>ros::sleep()</code> foi feita. Da mesma forma, "dorme" (<em>sleep</em>) por um correta quantidade de tempo.
+<br/></p>
+<p>Nesse caso, dizemos a ele que queremos funcionar a 10Hz.</p>
+<pre><code>81   int count = 0;
+82   while (ros::ok())
+83   {
+</code></pre>
+<p>Por padrão, <code>roscpp</code> instalará um manipulador SIGINT que providenciará o desligamento da manipulação, que no caso irá causar <code>ros::ok()</code> retornar falso.
+<br/></p>
+<p><code>ros::ok()</code> retornará falso se:</p>
+<ul>
+<li>Um SIGINT é recebido;</li>
+<li>Fomos expulsos da rede por uma outra node de mesmo nome;</li>
+<li><code>ros::shutdown()</code> foi chamado por outra parte da aplicação;</li>
+<li>Todos os <code>ros::NodeHandles</code> foram destruídos.</li>
+</ul>
+<p>Uma vez que <code>ros::ok</code> retorne falso, todas as chamadas do ROS irão falhar</p>
+<pre><code>87     std_msgs::String msg;
+88 
+89     std::stringstream ss;
+90     ss &lt;&lt; "hello world " &lt;&lt; count;
+91     msg.data = ss.str();
+</code></pre>
+<p>Transmitimos uma mensagem no ROS usando uma classe de mensagens-adaptadas, usualmente gerada por um arquivo msg. 
+<br/></p>
+<p><em>datatypes</em> mais complicados são possíveis, mas por agora iremos usar uma Message String padrão, que possui um membro "dado".</p>
+<pre><code>101     chatter_pub.publish(msg);
+</code></pre>
+<p>Agora nós estamos realmente transmitindo a Message a todos que estão conectados</p>
+<pre><code>93     ROS_INFO("%s", msg.data.c_str());
+</code></pre>
+<p><code>ROS_INFO</code> e amigos são os os nossos substitutos para o <em>printf/cout</em></p>
+<pre><code>103     ros::spinOnce();
+</code></pre>
+<p>Chamando o <code>ros::spinOnce()</code> aqui, não é necessário para este programa simples pois não estamos recebendo nenhum <em>callback</em>. Entretanto, se você for adicionar uma "subscription" nessa aplicação, e não tem o <code>ros::spinOnce()</code> aqui, seus <em>callbacks</em> nunca serão chamados. Então , adicioná-lo é uma boa medida</p>
+<pre><code>105     loop_rate.sleep();
+</code></pre>
+<p>Agora usamos o objeto <code>ros::Rate</code> para "dormir" (<em>sleep</em>) pelo tempo restante que nos permite alcançar a taxa de "publish" de 10Hz desejada.
+<br/></p>
+<p>Abaixo há uma versão condensada do que está acontecendo</p>
+<ul>
+<li>Inicializa o sistema do ROS</li>
+<li>Avisa se vamos publicar Messages <code>std_msgs/String</code> no Topic <em>chatter</em> para o Master</li>
+<li>"Loop" enquanto publicamos Messages ao <em>chatter</em> 10 vezes por segundo</li>
+</ul>
+<h3 id="escrevendo-um-subscriber-node">Escrevendo um Subscriber Node</h3>
+<p>Agora precisamos escrever uma Node que receba as Messages
+<br/></p>
+<p>Dentro do diretório src anteriormente criado vamos criar um arquivo chamado <code>listener.cpp</code> retirado do site:
+<br/></p>
+<p><a href="https://raw.github.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/listener/listener.cpp">https://raw.github.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/listener/listener.cpp</a>
+<br/></p>
+<p>Da mesma forma, vamos abri-lo para podermos analisar o código presente.</p>
+<pre><code>wget https://raw.github.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/listener/listener.cpp
+rosed curso listener.cpp
+</code></pre>
+<p>Caso recebam algum tipo de aviso, role a página até o final e tecle o botão "a" no seu teclado para que possam visualizar o código</p>
+<h3 id="analisando-o-subscriber">Analisando o Subscriber</h3>
+<p>Vamos analisar o código ignorando algumas partes que já foram explicadas anteriormente</p>
+<pre><code>34 void chatterCallback(const std_msgs::String::ConstPtr&amp; msg)
+35 {
+36   ROS_INFO("I heard: [%s]", msg-&gt;data.c_str());
+37 }
+</code></pre>
+<p>Essa é a função de <em>callback</em> que será chamada quando uma nova Message chegar no Topic <em>chatter</em>. A Message é passada em um <em>boost shared_ptr</em> que significa que você pode armazená-lo se quiser, sem preocupar se está sendo deletado abaixo de você e sem copiar o dado subjacente.</p>
+<pre><code>75   ros::Subscriber sub = n.subscribe("chatter", 1000, chatterCallback);
+</code></pre>
+<p>"Subscribe" no Topic <em>chatter</em> com o Master. ROS irá chamar a função <code>chatterCallback()</code> sempre que uma nova mensagem chega. O segundo argumento é o tamanho da fila, no caso de não ser possível processar Messages rápido o suficiente. Nesse caso, se a fila chega a 1000 Messages, começaremos a descartar velhas Messages enquanto novas chegam.
+<br/></p>
+<p><code>NodeHandle::subscribe()</code> retorna um objeto <code>ros::Subscriber</code> que você precisa manter até o momento que desejar se desinscrever (<em>unsubscribe</em>). Quando o objeto Subscriber é destruído, ele irá automaticamente se desinscrever do Topic <em>chatter</em>
+<br/></p>
+<p>Existem versões da função <code>NodeHandle::subscribe()</code> que permite especificar membros da classe, ou até qualquer coisa capaz de ser chamada pelo objeto <em>Boost.Function</em></p>
+<pre><code>82   ros::spin();
+</code></pre>
+<p><code>ros::spin()</code> entra em um loop, chamando <em>callbacks</em> de Messages o mais rápido possível. Mas não se preocupe, se não existe nada a ser feito ele não irá usar muita CPU. <code>ros::spin()</code> irá sair uma vez que <code>ros::ok()</code> retorne falso, o que significa que <code>ros::shutdown()</code> foi chamado, ou pelo <em>handler</em> de desligamento (o Master nos dizendo para desligar), ou sendo chamado manualmente.
+<br/></p>
+<p>Existem outras formas de puxar <em>callbacks</em>, mas não iremos preocupar com elas por agora.
+<br/></p>
+<p>Novamente, abaixo está uma versão condensada do que está acontecendo:</p>
+<ul>
+<li>Inicia o sistema do ROS;</li>
+<li>Se inscreve no Topic <em>chatter</em>;</li>
+<li>"Spin", esperando a chegada de Messages;</li>
+<li>Quando uma Message chega, a função <code>chatterCallback()</code>é chamada.</li>
+</ul>
+<h3 id="construindo-as-nodes">Construindo as Nodes</h3>
+<p>Editando novamente o arquivo <code>CMakeLists.txt</code>, retirando comentários e adicionando linhas de código, o conteúdo deve estar mais ou menos assim: 
+<br/></p>
+<p>(Mantendo as modificações feitas nos passos anteriores)</p>
+<pre><code>cmake_minimum_required(VERSION 2.8.3)
+project(curso)
+
+## Find catkin and any catkin packages
+find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs genmsg)
+
+## Declare ROS messages and services
+add_message_files(FILES Num.msg)
+add_service_files(FILES AddTwoInts.srv)
+
+## Generate added messages and services
+generate_messages(DEPENDENCIES std_msgs)
+
+## Declare a catkin package
+catkin_package()
+
+## Build talker and listener
+include_directories(include ${catkin_INCLUDE_DIRS})
+
+add_executable(talker src/talker.cpp)
+target_link_libraries(talker ${catkin_LIBRARIES})
+add_dependencies(talker curso_generate_messages_cpp)
+
+add_executable(listener src/listener.cpp)
+target_link_libraries(listener ${catkin_LIBRARIES})
+add_dependencies(listener curso_generate_messages_cpp)
+</code></pre>
+<p>As últimas 6 linhas de código adicionadas irão criar dois executáveis, <code>talker</code> e <code>listener</code> que por padrão irão para o diretório <code>devel</code>
+<br/></p>
+<p>Note que voce teve que adicionar duas dependências para os "executable targets" aos "message generation targets"</p>
+<pre><code>add_dependencies(talker curso_generate_messages_cpp)
+</code></pre>
+<p>Isso garante que as "messages headers" dessa package sejam geradas antes de usá-las. Se você usar Messages de outras Packages de dentro do seu catkin workspace, você precisa adicionar dependências para os seus respectivos "generations targets" também, pois o catkin constroi todos os projetos em paralelo. Assim como <em>Groovy</em> você pode usar a seguinte variável para depender de todos os alvos necessários:</p>
+<pre><code>target_link_libraries(talker ${catkin_LIBRARIES})
+</code></pre>
+<p>Então agora você pode faze a "build"</p>
+<pre><code>cd
+cd catkin_ws
+catkin_make
+</code></pre>
+<h3 id="testando-o-publisher-e-subscriber-criados">Testando o Publisher e Subscriber criados</h3>
+<p>Tenha certeza que roscore esteja ativo. Em um novo terminal</p>
+<pre><code>roscore
+</code></pre>
+<p>Tenha certeza que fez a "source" do seu arquivo do workspace <code>setup.sh</code></p>
+<pre><code>cd catkin_ws
+source devel/setup.bash
+</code></pre>
+<p>Vamos agora testar o Publisher <code>talker</code></p>
+<pre><code>rosrun curso talker
+</code></pre>
+<p>Você irá receber algo parecido com isso:</p>
+<pre><code>[INFO] [WallTime: 1314931831.774057] hello world 1314931831.77
+[INFO] [WallTime: 1314931832.775497] hello world 1314931832.77
+[INFO] [WallTime: 1314931833.778937] hello world 1314931833.78
+[INFO] [WallTime: 1314931834.782059] hello world 1314931834.78
+[INFO] [WallTime: 1314931835.784853] hello world 1314931835.78
+[INFO] [WallTime: 1314931836.788106] hello world 1314931836.79
+</code></pre>
+<p>Agora em um novo terminal, vamos testar o Subscriber <code>listener</code></p>
+<pre><code>rosrun curso listener
+</code></pre>
+<p>Você receberá algo parecido com isso:</p>
+<pre><code>[INFO] [WallTime: 1314931969.258941] /listener_17657_1314931968795I heard hello world 1314931969.26
+[INFO] [WallTime: 1314931970.262246] /listener_17657_1314931968795I heard hello world 1314931970.26
+[INFO] [WallTime: 1314931971.266348] /listener_17657_1314931968795I heard hello world 1314931971.26
+[INFO] [WallTime: 1314931972.270429] /listener_17657_1314931968795I heard hello world 1314931972.27
+[INFO] [WallTime: 1314931973.274382] /listener_17657_1314931968795I heard hello world 1314931973.27
+[INFO] [WallTime: 1314931974.277694] /listener_17657_1314931968795I heard hello world 1314931974.28
+[INFO] [WallTime: 1314931975.283708] /listener_17657_1314931968795I heard hello world 1314931975.28
+</code></pre>
+<p>Após feitos os testes pode apertar Ctrl-C para finalizar ambas as Nodes.</p>
+<p><br/></p>
+<h2 id="escrevendo-um-service-e-client-simples"><em>Escrevendo um Service e Client simples</em></h2>
+<p><br/></p>
+<h3 id="escrevendo-um-service-node">Escrevendo um Service Node</h3>
+<p>Vamos criar um Service Node <code>add_two_ints_server</code> que receberá dois inteiros e retorna a soma. Ele estará armazenado no diretório src criado nos passos anteriores.</p>
+<pre><code>roscd curso/src
+touch add_two_ints_server.cpp
+</code></pre>
+<p>Agora vamos editá-lo</p>
+<pre><code>rosed curso add_two_ints_server.cpp
+</code></pre>
+<p>Cole o seguinte código no arquivo:</p>
+<pre><code>#include "ros/ros.h"
+#include "curso/AddTwoInts.h"
+
+bool add(curso::AddTwoInts::Request  &amp;req,
+         curso_tutorials::AddTwoInts::Response &amp;res)
+{
+  res.sum = req.a + req.b;
+  ROS_INFO("request: x=%ld, y=%ld", (long int)req.a, (long int)req.b);
+  ROS_INFO("sending back response: [%ld]", (long int)res.sum);
+  return true;
+}
+
+int main(int argc, char **argv)
+{
+  ros::init(argc, argv, "add_two_ints_server");
+  ros::NodeHandle n;
+
+  ros::ServiceServer service = n.advertiseService("add_two_ints", add);
+  ROS_INFO("Ready to add two ints.");
+  ros::spin();
+
+  return 0;
+}
+</code></pre>
+<h3 id="analisando-o-service">Analisando o Service</h3>
+<p>Vamos agora entender o código</p>
+<pre><code>1 #include "ros/ros.h"
+2 #include "curso/AddTwoInts.h"
+3
+</code></pre>
+<p><code>curso/AddTwoInts.h</code> é o arquivo <em>header</em> gerado do arquivo srv que criamos nos passos anteriores.</p>
+<pre><code>4 bool add(curso::AddTwoInts::Request  &amp;req,
+5          curso::AddTwoInts::Response &amp;res)
+</code></pre>
+<p>Essa função providencia o Service que adiciona dois inteiros. Ele recebe o tipo de "solicitação" (<em>request</em>) e de "resposta" (<em>response</em>) definido no arquivo srv e retorna um booleano.</p>
+<pre><code>6 {
+7   res.sum = req.a + req.b;
+8   ROS_INFO("request: x=%ld, y=%ld", (long int)req.a, (long int)req.b);
+9   ROS_INFO("sending back response: [%ld]", (long int)res.sum);
+10   return true;
+11 }
+</code></pre>
+<p>Acima, os dois inteiros são adicionados e armazenados na "resposta". Depois, algumas informações sobre a "solicitação" e a "resposta" são registrados. Por fim, o Service retorna verdadeiro quando completo</p>
+<pre><code>18   ros::ServiceServer service = n.advertiseService("add_two_ints", add);
+</code></pre>
+<p>Acima, o Service é criado e anunciado sobre o ROS</p>
+<h3 id="escrevendo-um-client-node">Escrevendo um Client Node</h3>
+<p>Vamos criar um Service Node <code>add_two_ints_client</code>. Ele estará armazenado novamente no diretório src.
+<br/></p>
+<pre><code>roscd curso/src
+touch add_two_ints_client.cpp
+</code></pre>
+<p>Agora vamos editá-lo</p>
+<pre><code>rosed curso add_two_ints_client.cpp
+</code></pre>
+<p>Cole o seguinte código no arquivo:</p>
+<pre><code>#include "ros/ros.h"
+#include "curso/AddTwoInts.h"
+#include &lt;cstdlib&gt;
+
+int main(int argc, char **argv)
+{
+  ros::init(argc, argv, "add_two_ints_client");
+  if (argc != 3)
+  {
+    ROS_INFO("usage: add_two_ints_client X Y");
+    return 1;
+  }
+
+  ros::NodeHandle n;
+  ros::ServiceClient client = n.serviceClient&lt;curso::AddTwoInts&gt;("add_two_ints");
+  curso::AddTwoInts srv;
+  srv.request.a = atoll(argv[1]);
+  srv.request.b = atoll(argv[2]);
+  if (client.call(srv))
+  {
+    ROS_INFO("Sum: %ld", (long int)srv.response.sum);
+  }
+  else
+  {
+    ROS_ERROR("Failed to call service add_two_ints");
+    return 1;
+  }
+
+  return 0;
+}
+</code></pre>
+<h3 id="analisando-o-client">Analisando o Client</h3>
+<p>Vamos agora entender o código</p>
+<pre><code>15   ros::ServiceClient client = n.serviceClient&lt;curso::AddTwoInts&gt;("add_two_ints");
+</code></pre>
+<p>A linha acima cria um Client para o Service <code>add_two_ints</code>. O objeto <code>ros::ServiceClient</code> é usado para chamar o Service posteriormente</p>
+<pre><code>16   curso::AddTwoInts srv;
+17   srv.request.a = atoll(argv[1]);
+18   srv.request.b = atoll(argv[2]);
+</code></pre>
+<p>Acima, nós instaciamos um Service Class que se "autogera" e atribui valores dentro de seu membro de "solicitação". Um Service Class contém dois membros, <em>request</em> e <em>response</em>. Ele da mesma forma contém duas definições de classe <em>Request</em> e <em>Response</em>.</p>
+<pre><code>19   if (client.call(srv))
+</code></pre>
+<p>A linha acima realmente chama o Service. Desde que as chamadas do Service são bloqueadas, ele retornará uma vez que a chamada é finalizada. Se a chamada do Service for bem sucedida, <code>call()</code> irá retornar verdadeiro e o valor em <code>srv.response</code> será valido. Se a chamada não for bem sucedida , <code>call()</code> retornará falso e o valor em <code>srv.response</code> será inválido.</p>
+<h3 id="construindo-as-nodes_1">Construindo as Nodes</h3>
+<p>Novamente, será necessário editar o arquivo <code>CMakeLists.txt</code>, adicionando no final do arquivo o seguinte código:</p>
+<pre><code>add_executable(add_two_ints_server src/add_two_ints_server.cpp)
+target_link_libraries(add_two_ints_server ${catkin_LIBRARIES})
+add_dependencies(add_two_ints_server curso_gencpp)
+
+add_executable(add_two_ints_client src/add_two_ints_client.cpp)
+target_link_libraries(add_two_ints_client ${catkin_LIBRARIES})
+add_dependencies(add_two_ints_client curso_gencpp)
+</code></pre>
+<p>As linhas acima irão criar dois executáveis, <code>add_two_ints_server</code> e <code>add_two_ints_client</code> que por padrão irão para seu diretório <code>devel</code>.
+<br/></p>
+<p>Agora, podemos fazer a "build" novamente</p>
+<pre><code>cd
+cd catkin_ws
+catkin_make
+</code></pre>
+<h3 id="testando-o-service-e-client-criados">Testando o Service e Client criados</h3>
+<p>Tenha certeza que roscore esteja ativo. Em um novo terminal</p>
+<pre><code>roscore
+</code></pre>
+<p>Tenha certeza que fez a "source" do seu arquivo do workspace <code>setup.sh</code></p>
+<pre><code>cd catkin_ws
+source devel/setup.bash
+</code></pre>
+<p>Vamos agora testar o server</p>
+<pre><code>rosrun curso add_two_ints_server
+</code></pre>
+<p>Você irá receber algo parecido com isso:</p>
+<pre><code>Ready to add two ints.
+</code></pre>
+<p>Agora em um outro terminal, vamos colocar para funcionar o client com os argumentos necessários</p>
+<pre><code>rosrun curso add_two_ints_client 1 3
+</code></pre>
+<p>No terminal do client, você irá receber algo parecido com isso:</p>
+<pre><code>Sum: 4
+</code></pre>
+<p>E no terminal do server, algo parecido com isso:</p>
+<pre><code>request: x=1, y=3
+sending back response: [4]
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../../sobre/" class="btn btn-neutral" title="Sobre"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/Equipe-Hawkings/Tutoriais_Hawkings" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../../sobre/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>
