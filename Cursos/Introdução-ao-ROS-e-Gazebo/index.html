@@ -297,7 +297,7 @@ catkin_make
 <p>O <code>rqt_plot</code> gera um gráfico que mostra os dados publicados nos Topics ao longo do tempo:</p>
 <pre><code>rosrun rqt_plot rqt_plot
 </code></pre>
-<p>Adicione na caixa de texto os Topics <code>/turtle1/pose/x</code> e <code>/turlte1/pose/y</code> para ver no gráfico as posições da tartaruga no gráfico ao longo do tempo.</p>
+<p>Adicione na caixa de texto os Topics <code>/turtle1/pose/x</code> e <code>/turtle1/pose/y</code> para ver no gráfico as posições da tartaruga no gráfico ao longo do tempo.</p>
 <p><br/></p>
 <h2 id="conhecendo-ros-services-e-parameters"><em>Conhecendo ROS Services e Parameters</em></h2>
 <p><br/></p>
@@ -358,7 +358,8 @@ catkin_make
 # roslaunch [package] [nome_do_arquivo.launch]
 </code></pre>
 <p>Para uma maior organização vamos criar primeiramente um diretório chamado "launch" no qual armazenará os "launch files"</p>
-<pre><code>roscd curso
+<pre><code>source devel/setup.bash
+roscd curso
 mkdir launch
 cd launch
 </code></pre>
@@ -383,8 +384,9 @@ cd launch
 
 &lt;/launch&gt;
 </code></pre>
-<p>Você pode editar o arquivo a partir do seguinte comando:</p>
-<pre><code>rosed curso turtlemimic.launch
+<p>Você pode editar o arquivo a partir do comando <code>rosed</code> abaixo. (Da mesma forma, abaixo está o comando de instalação do editor de texto Vim - editor padrão do ROS)</p>
+<pre><code>sudo apt install vim
+rosed curso turtlemimic.launch
 </code></pre>
 <p>Após editado o arquivo, vamos executá-lo.</p>
 <pre><code>roslaunch curso turtlemimic.launch
@@ -400,7 +402,8 @@ cd launch
 <p><br/></p>
 <h3 id="criando-uma-msg">Criando uma msg</h3>
 <p>Uma msg é armazenada no diretório "msg" específico. Portanto, vamos criar um.</p>
-<pre><code>roscd curso
+<pre><code>source devel/setup.bash
+roscd curso
 mkdir msg
 cd msg
 </code></pre>
@@ -491,7 +494,7 @@ cd srv
 # roscp [nome_da_package] [arquivo_a_copiar] [local_do_arquivo_a_copiar]
 </code></pre>
 <p>Agora podemos copiar um srv da package <code>ropsy_tutorials</code></p>
-<pre><code>roscp rospy_tutorials AddTwoInts.srv srv/AddTwoInts.srv
+<pre><code>roscp rospy_tutorials AddTwoInts.srv AddTwoInts.srv
 </code></pre>
 <h3 id="editando-o-cmake_liststxt">Editando o <em>CMake_Lists.txt</em></h3>
 <p>A dependência <code>message_generation</code> funciona tanto para msg quanto para srv, como anteriormente já foi configurada, não precisamos realizá-la novamente.
@@ -547,8 +550,9 @@ cd src
 <br/></p>
 <p><a href="https://raw.github.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/talker/talker.cpp">https://raw.github.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/talker/talker.cpp</a>
 <br/></p>
-<p>Da mesma forma, vamos abri-lo para podermos analisar o código presente.</p>
+<p>Da mesma forma, vamos abri-lo para podermos analisar o código presente e transforma-lo em um arquivo executável.</p>
 <pre><code>wget https://raw.github.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/talker/talker.cpp
+chmod +x talker.cpp
 rosed curso talker.cpp
 </code></pre>
 <p>Caso recebam algum tipo de aviso, role a página até o final e tecle o botão "a" no seu teclado para que possam visualizar o código</p>
@@ -632,8 +636,9 @@ rosed curso talker.cpp
 <br/></p>
 <p><a href="https://raw.github.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/listener/listener.cpp">https://raw.github.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/listener/listener.cpp</a>
 <br/></p>
-<p>Da mesma forma, vamos abri-lo para podermos analisar o código presente.</p>
+<p>Da mesma forma, vamos abri-lo para podermos analisar o código presente e transforma-lo em um arquivo executável.</p>
 <pre><code>wget https://raw.github.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/listener/listener.cpp
+chmod +x listener.cpp
 rosed curso listener.cpp
 </code></pre>
 <p>Caso recebam algum tipo de aviso, role a página até o final e tecle o botão "a" no seu teclado para que possam visualizar o código</p>
@@ -673,7 +678,7 @@ rosed curso listener.cpp
 project(curso)
 
 ## Find catkin and any catkin packages
-find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs genmsg)
+find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs message_generation)
 
 ## Declare ROS messages and services
 add_message_files(FILES Num.msg)
@@ -714,7 +719,8 @@ catkin_make
 <pre><code>roscore
 </code></pre>
 <p>Tenha certeza que fez a "source" do seu arquivo do workspace <code>setup.sh</code></p>
-<pre><code>cd catkin_ws
+<pre><code>cd
+cd catkin_ws
 source devel/setup.bash
 </code></pre>
 <p>Vamos agora testar o Publisher <code>talker</code></p>
@@ -749,15 +755,16 @@ source devel/setup.bash
 <pre><code>roscd curso/src
 touch add_two_ints_server.cpp
 </code></pre>
-<p>Agora vamos editá-lo</p>
-<pre><code>rosed curso add_two_ints_server.cpp
+<p>Agora vamos editá-lo e transforma-lo em um arquivo executável.</p>
+<pre><code>chmod +x add_two_ints_server.cpp
+rosed curso add_two_ints_server.cpp
 </code></pre>
 <p>Cole o seguinte código no arquivo:</p>
 <pre><code>#include "ros/ros.h"
 #include "curso/AddTwoInts.h"
 
 bool add(curso::AddTwoInts::Request  &amp;req,
-         curso_tutorials::AddTwoInts::Response &amp;res)
+         curso::AddTwoInts::Response &amp;res)
 {
   res.sum = req.a + req.b;
   ROS_INFO("request: x=%ld, y=%ld", (long int)req.a, (long int)req.b);
@@ -805,8 +812,9 @@ int main(int argc, char **argv)
 <pre><code>roscd curso/src
 touch add_two_ints_client.cpp
 </code></pre>
-<p>Agora vamos editá-lo</p>
-<pre><code>rosed curso add_two_ints_client.cpp
+<p>Agora vamos editá-lo e transforma-lo em um arquivo executável</p>
+<pre><code>chmod +x add_two_ints_client.cpp
+rosed curso add_two_ints_client.cpp
 </code></pre>
 <p>Cole o seguinte código no arquivo:</p>
 <pre><code>#include "ros/ros.h"
