@@ -93,6 +93,19 @@
         </ul>
     
 
+    <li class="toctree-l3"><a href="#2a-parte-tutoriais-gazebo-e-gazeboros">2ª Parte: Tutoriais Gazebo e Gazebo+ROS</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#trabalhando-com-os-models">Trabalhando com os Models</a></li>
+        
+            <li><a class="toctree-l4" href="#criando-puglins">Criando Puglins</a></li>
+        
+            <li><a class="toctree-l4" href="#integracao-gazebo-ros">Integração Gazebo + ROS</a></li>
+        
+        </ul>
+    
+
     </ul>
                 </li>
     </ul>
@@ -901,6 +914,734 @@ source devel/setup.bash
 <p>E no terminal do server, algo parecido com isso:</p>
 <pre><code>request: x=1, y=3
 sending back response: [4]
+</code></pre>
+<p><br/></p>
+<h1 id="2a-parte-tutoriais-gazebo-e-gazeboros"><center>2ª Parte: Tutoriais Gazebo e Gazebo+ROS</center></h1>
+<p><br/></p>
+<h2 id="trabalhando-com-os-models"><em>Trabalhando com os Models</em></h2>
+<p><br/></p>
+<h3 id="construindo-um-pequeno-robo">Construindo um pequeno robô</h3>
+<p>Vamos experenciar a criação de objetos pelo Edit Model do Gazebo! No caso, vamos criar um pequeno robô. As alterações necessárias de suas dimensões e especificações, estão dispostas abaixo:</p>
+<p><br/></p>
+<h4 id="divisao-chaci">Divisão: Chaci</h4>
+<h4 id="link"><em>Link:</em></h4>
+<p>Pose x: <code>0</code>
+Pose y: <code>0</code>
+Pose z: <code>0</code></p>
+<h4 id="visual"><em>Visual:</em></h4>
+<p>Geometry x: <code>0,4</code>
+Geometry y: <code>0,2</code>
+Geometry z: <code>0,1</code></p>
+<h4 id="caster_visual"><em>Caster_Visual:</em></h4>
+<p>Pose x: <code>-0,15</code>
+Pose y: <code>0</code>
+Pose z: <code>-0,05</code></p>
+<p>Geometry Sphere Radius: <code>0,05</code></p>
+<h4 id="collision"><em>Collision:</em></h4>
+<p>Geometry x: <code>0,4</code>
+Geometry y: <code>0,2</code>
+Geometry z: <code>0,1</code></p>
+<h4 id="caster_collision"><em>Caster_Collision:</em></h4>
+<p>Geometry x: <code>-0,15</code>
+Geometry y: <code>0</code>
+Geometry z: <code>-0,05</code></p>
+<p>Geometry Sphere Radius: <code>0,05</code></p>
+<p>Friction Mu: <code>0</code>
+Friction Mu2: <code>0</code>
+Friction Slip1: <code>1</code>
+Friction Slip2: <code>1</code></p>
+<p><br/></p>
+<h4 id="divisao-roda-esquerda-dianteira">Divisão: Roda esquerda dianteira</h4>
+<h4 id="link_1"><em>Link:</em></h4>
+<p>Pose x: <code>0,1</code>
+Pose y: <code>0,13</code>
+Pose z: <code>0,1</code></p>
+<p>Roll: <code>0,000048</code>
+Pitch: <code>1,5707</code>
+Yaw: <code>1,570748</code></p>
+<h4 id="visual_1"><em>Visual:</em></h4>
+<p>Geometry Cylinder Radius: <code>0,1</code>
+Geometry Cylinder Length: <code>0,05</code></p>
+<h4 id="collision_1"><em>Collision:</em></h4>
+<p>Geometry Cylinder Radius: <code>0,1</code>
+Geometry Cylinder Length: <code>0,05</code></p>
+<h4 id="joint">Joint</h4>
+<h4 id="joint-axis"><em>Joint Axis:</em></h4>
+<p>x: <code>0</code>
+y: <code>1</code>
+z: <code>0</code></p>
+<h4 id="joint-pose"><em>Joint Pose:</em></h4>
+<p>Pose x: <code>0</code>
+Pose y: <code>0</code>
+Pose z: <code>-0,03</code></p>
+<p>Roll: <code>0</code>
+Pitch: <code>0</code>
+Yaw: <code>0</code></p>
+<p><br/></p>
+<h4 id="divisao-roda-direita-dianteira">Divisão: Roda direita dianteira</h4>
+<h4 id="link_2"><em>Link:</em></h4>
+<p>Pose x: <code>0,1</code>
+Pose y: <code>-0,13</code>
+Pose z: <code>0,1</code></p>
+<p>Roll: <code>0,000048</code>
+Pitch: <code>1,5707</code>
+Yaw: <code>1,570748</code></p>
+<h4 id="visual_2"><em>Visual:</em></h4>
+<p>Geometry Cylinder Radius: <code>0,1</code>
+Geometry Cylinder Length: <code>0,05</code></p>
+<h4 id="collision_2"><em>Collision:</em></h4>
+<p>Geometry Cylinder Radius: <code>0,1</code>
+Geometry Cylinder Length: <code>0,05</code></p>
+<h4 id="joint_1">Joint</h4>
+<h4 id="joint-axis_1"><em>Joint Axis:</em></h4>
+<p>x: <code>0</code>
+y: <code>1</code>
+z: <code>0</code></p>
+<h4 id="joint-pose_1"><em>Joint Pose:</em></h4>
+<p>Pose x: <code>0</code>
+Pose y: <code>0</code>
+Pose z: <code>0,03</code></p>
+<p>Roll: <code>0</code>
+Pitch: <code>0</code>
+Yaw: <code>0</code></p>
+<p><br></p>
+<h3 id="anexar-uma-mesh-no-robo">Anexar uma mesh no robô</h3>
+<p>Vá para o diretório onde salvou o pequeno robô criado.</p>
+<pre><code>cd ~/&lt;caminho do diretório&gt;/
+</code></pre>
+<p>Abra o arquivo <code>model.sdf</code> no seu editor favorito</p>
+<pre><code>gedit ~/&lt;caminho do dirtório&gt;/model.sdf
+</code></pre>
+<p>Agora adicionemos uma mesh para o visual do chaci. Encontre a tag <code>&lt;visual&gt;</code> com o <code>name=visual</code>, que se parece com:</p>
+<pre><code>&lt;visual name='visual'&gt;
+  &lt;geometry&gt;
+    &lt;box&gt;
+      &lt;size&gt;.4 .2 .1&lt;/size&gt;
+    &lt;/box&gt;
+  &lt;/geometry&gt;
+&lt;/visual&gt;
+</code></pre>
+<p>Nesse exemplo, usaremos uma mesh do model <em>pioneer2dx</em>. Mude o elemento visual da seguinte forma:</p>
+<pre><code>&lt;visual name='visual'&gt;
+  &lt;pose&gt;0 0 0.05 0 0 0&lt;/pose&gt;
+  &lt;geometry&gt;
+    &lt;mesh&gt;
+      &lt;uri&gt;model://pioneer2dx/meshes/chassis.dae&lt;/uri&gt;
+      &lt;scale&gt;0.9 0.5 0.5&lt;/scale&gt;
+    &lt;/mesh&gt;
+  &lt;/geometry&gt;
+&lt;/visual&gt;
+</code></pre>
+<p>Agora seu pequeno robô estará perfeitamente encaixado com a mesh do <em>pioneer2dx</em>. Vá novamente para o Gazebo e veja como está seu visual. Caso seja necessário, vá em "Add_Path" e selecione o caminho para o diretório onde salvou o arquivo <code>model.sdf</code>. Assim, poderá visualizá-lo no simulador.</p>
+<p><br/></p>
+<h2 id="criando-puglins"><em>Criando Puglins</em></h2>
+<p><br/></p>
+<h3 id="criando-um-model-plugins">Criando um Model Plugins</h3>
+<p>Os models plugins permitem um completo acesso às propriedades físicas dos models e seus elementos como links, joints, collision e objects.
+<br/>
+Vamos criar um plugin que irá aplicar uma velocidade linear para um model!
+<br/>
+Primeiramente, vamos criar um diretório e um arquivo .cc para o novo plugin:</p>
+<pre><code>mkdir ~/gazebo_plugin_tutorial
+cd ~/gazebo_plugin_tutorial
+gedit model_push.cc
+</code></pre>
+<p>Com o editor de texto aberto, copie o seguinte código e cole no arquivo criado <code>model_push.cc</code></p>
+<pre><code>#include &lt;functional&gt;
+#include &lt;gazebo/gazebo.hh&gt;
+#include &lt;gazebo/physics/physics.hh&gt;
+#include &lt;gazebo/common/common.hh&gt;
+#include &lt;ignition/math/Vector3.hh&gt;
+
+namespace gazebo
+{
+  class ModelPush : public ModelPlugin
+  {
+    public: void Load(physics::ModelPtr _parent, sdf::ElementPtr /*_sdf*/)
+    {
+      // Store the pointer to the model
+      this-&gt;model = _parent;
+
+      // Listen to the update event. This event is broadcast every
+      // simulation iteration.
+      this-&gt;updateConnection = event::Events::ConnectWorldUpdateBegin(
+          std::bind(&amp;ModelPush::OnUpdate, this));
+    }
+
+    // Called by the world update start event
+    public: void OnUpdate()
+    {
+      // Apply a small linear velocity to the model.
+      this-&gt;model-&gt;SetLinearVel(ignition::math::Vector3d(.3, 0, 0));
+    }
+
+    // Pointer to the model
+    private: physics::ModelPtr model;
+
+    // Pointer to the update event connection
+    private: event::ConnectionPtr updateConnection;
+  };
+
+  // Register this plugin with the simulator
+  GZ_REGISTER_MODEL_PLUGIN(ModelPush)
+}
+</code></pre>
+<h3 id="compilando-o-plugin">Compilando o Plugin</h3>
+<p>Para que possamos utilizar o plugin, é necessário que ele seja compilado. Para isso, precisamos criar e alterar o arquivo <code>CMakeLists.txt</code></p>
+<pre><code>gedit ~/gazebo_plugin_tutorial/CMakeLists.txt
+</code></pre>
+<p>Adicione as seguintes linhas:</p>
+<pre><code>cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+
+find_package(gazebo REQUIRED)
+include_directories(${GAZEBO_INCLUDE_DIRS})
+link_directories(${GAZEBO_LIBRARY_DIRS})
+list(APPEND CMAKE_CXX_FLAGS "${GAZEBO_CXX_FLAGS}")
+
+add_library(model_push SHARED model_push.cc)
+target_link_libraries(model_push ${GAZEBO_LIBRARIES})
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
+</code></pre>
+<p>Agora, vamos criar um diretório <code>build</code> e compilar nosso plugin.</p>
+<pre><code>mkdir ~/gazebo_plugin_tutorial/build
+cd ~/gazebo_plugin_tutorial/build
+cmake ../
+make
+</code></pre>
+<h3 id="executando-o-plugin">Executando o Plugin</h3>
+<p>O Model Plugin será utilizado dentro de um arquivo World. Para isso, vamos criar um.</p>
+<pre><code>cd ~/gazebo_plugin_tutorial
+gedit model_push.world
+</code></pre>
+<p>Adicione as seguintes linhas no arquivo <code>model_push.world</code> criado.</p>
+<pre><code>&lt;?xml version="1.0"?&gt; 
+&lt;sdf version="1.4"&gt;
+  &lt;world name="default"&gt;
+
+    &lt;!-- Ground Plane --&gt;
+    &lt;include&gt;
+      &lt;uri&gt;model://ground_plane&lt;/uri&gt;
+    &lt;/include&gt;
+
+    &lt;include&gt;
+      &lt;uri&gt;model://sun&lt;/uri&gt;
+    &lt;/include&gt;
+
+    &lt;model name="box"&gt;
+      &lt;pose&gt;0 0 0.5 0 0 0&lt;/pose&gt;
+      &lt;link name="link"&gt;
+        &lt;collision name="collision"&gt;
+          &lt;geometry&gt;
+            &lt;box&gt;
+              &lt;size&gt;1 1 1&lt;/size&gt;
+            &lt;/box&gt;
+          &lt;/geometry&gt;
+        &lt;/collision&gt;
+
+        &lt;visual name="visual"&gt;
+          &lt;geometry&gt;
+            &lt;box&gt;
+              &lt;size&gt;1 1 1&lt;/size&gt;
+            &lt;/box&gt;
+          &lt;/geometry&gt;
+        &lt;/visual&gt;
+      &lt;/link&gt;
+
+      &lt;plugin name="model_push" filename="libmodel_push.so"/&gt;
+    &lt;/model&gt;        
+  &lt;/world&gt;
+&lt;/sdf&gt;
+</code></pre>
+<p>O gancho para o anexo do plugin ao model é especificado no fim "bloco de elemento model" <code>&lt;plugin name="model_push" filename="libmodel_push.so"/&gt;</code>
+<br/>
+Adicionamos agora, o caminho da biblioteca para o <code>GAZEBO_PLUGIN_PATH</code></p>
+<pre><code>$ export GAZEBO_PLUGIN_PATH=$HOME/gazebo_plugin_tutorial/build:$GAZEBO_PLUGIN_PATH
+</code></pre>
+<p>Para executarmos a simulação, digitamos:</p>
+<pre><code>cd ~/gazebo_plugin_tutorial/
+gazebo model_push.world
+</code></pre>
+<h3 id="criando-um-world-plugin">Criando um World Plugin</h3>
+<p>Pode ser útil controlar quais models a existirem em uma simulação em execução, e quando eles devem ser inseridos. Vamos aprender a inserir Models predefinidos ou customizados no Gazebo.
+<br/>
+No mesmo diretório criado anteriormente, vamos criar um novo arquivo fonte:</p>
+<pre><code>cd ~/gazebo_plugin_tutorial
+gedit factory.cc
+</code></pre>
+<p>Com o editor de texto aberto, copie o seguinte código no arquivo <code>factory.cc</code> criado:</p>
+<pre><code>#include &lt;ignition/math/Pose3.hh&gt;
+#include "gazebo/physics/physics.hh"
+#include "gazebo/common/common.hh"
+#include "gazebo/gazebo.hh"
+
+namespace gazebo
+{
+class Factory : public WorldPlugin
+{
+  public: void Load(physics::WorldPtr _parent, sdf::ElementPtr /*_sdf*/)
+  {
+    // Option 1: Insert model from file via function call.
+    // The filename must be in the GAZEBO_MODEL_PATH environment variable.
+    _parent-&gt;InsertModelFile("model://box");
+
+    // Option 2: Insert model from string via function call.
+    // Insert a sphere model from string
+    sdf::SDF sphereSDF;
+    sphereSDF.SetFromString(
+       "&lt;sdf version ='1.4'&gt;\
+          &lt;model name ='sphere'&gt;\
+            &lt;pose&gt;1 0 0 0 0 0&lt;/pose&gt;\
+            &lt;link name ='link'&gt;\
+              &lt;pose&gt;0 0 .5 0 0 0&lt;/pose&gt;\
+              &lt;collision name ='collision'&gt;\
+                &lt;geometry&gt;\
+                  &lt;sphere&gt;&lt;radius&gt;0.5&lt;/radius&gt;&lt;/sphere&gt;\
+                &lt;/geometry&gt;\
+              &lt;/collision&gt;\
+              &lt;visual name ='visual'&gt;\
+                &lt;geometry&gt;\
+                  &lt;sphere&gt;&lt;radius&gt;0.5&lt;/radius&gt;&lt;/sphere&gt;\
+                &lt;/geometry&gt;\
+              &lt;/visual&gt;\
+            &lt;/link&gt;\
+          &lt;/model&gt;\
+        &lt;/sdf&gt;");
+    // Demonstrate using a custom model name.
+    sdf::ElementPtr model = sphereSDF.Root()-&gt;GetElement("model");
+    model-&gt;GetAttribute("name")-&gt;SetFromString("unique_sphere");
+    _parent-&gt;InsertModelSDF(sphereSDF);
+
+    // Option 3: Insert model from file via message passing.
+    {
+      // Create a new transport node
+      transport::NodePtr node(new transport::Node());
+
+      // Initialize the node with the world name
+      node-&gt;Init(_parent-&gt;Name());
+
+      // Create a publisher on the ~/factory topic
+      transport::PublisherPtr factoryPub =
+      node-&gt;Advertise&lt;msgs::Factory&gt;("~/factory");
+
+      // Create the message
+      msgs::Factory msg;
+
+      // Model file to load
+      msg.set_sdf_filename("model://cylinder");
+
+      // Pose to initialize the model to
+      msgs::Set(msg.mutable_pose(),
+          ignition::math::Pose3d(
+            ignition::math::Vector3d(1, -2, 0),
+            ignition::math::Quaterniond(0, 0, 0)));
+
+      // Send the message
+      factoryPub-&gt;Publish(msg);
+    }
+  }
+};
+
+// Register this plugin with the simulator
+GZ_REGISTER_WORLD_PLUGIN(Factory)
+}
+</code></pre>
+<h3 id="compilando-o-plugin_1">Compilando o Plugin</h3>
+<p>Para a compilação do Plugin, é necesário adicionar mais algumas linhas no <code>CMakeLists.txt</code></p>
+<pre><code>gedit ~/gazebo_plugin_tutorial/CMakeLists.txt
+</code></pre>
+<p>Adicione:</p>
+<pre><code>add_library(factory SHARED factory.cc)
+target_link_libraries(factory
+  ${GAZEBO_LIBRARIES}
+)
+</code></pre>
+<p>Agora, vamos compilar o plugin:</p>
+<pre><code>cd ~/gazebo_plugin_tutorial/build
+cmake ../
+make
+</code></pre>
+<h3 id="criando-models-para-o-mundo">Criando Models para o mundo</h3>
+<p>Vamos criar um diretório para armazenamento dos Models</p>
+<pre><code>mkdir ~/gazebo_plugin_tutorial/models
+cd ~/gazebo_plugin_tutorial/models
+mkdir box cylinder
+</code></pre>
+<p>Vamos criar em seguida um model em formato de caixa</p>
+<pre><code>cd box
+gedit model.sdf
+</code></pre>
+<p>Copie e cole o seguinte código no arquivo <code>model.sdf</code> criado</p>
+<pre><code>&lt;?xml version='1.0'?&gt;
+&lt;sdf version ='1.6'&gt;
+  &lt;model name ='box'&gt;
+    &lt;pose&gt;1 2 0 0 0 0&lt;/pose&gt;
+    &lt;link name ='link'&gt;
+      &lt;pose&gt;0 0 .5 0 0 0&lt;/pose&gt;
+      &lt;collision name ='collision'&gt;
+        &lt;geometry&gt;
+          &lt;box&gt;&lt;size&gt;1 1 1&lt;/size&gt;&lt;/box&gt;
+        &lt;/geometry&gt;
+      &lt;/collision&gt;
+      &lt;visual name ='visual'&gt;
+        &lt;geometry&gt;
+          &lt;box&gt;&lt;size&gt;1 1 1&lt;/size&gt;&lt;/box&gt;
+        &lt;/geometry&gt;
+      &lt;/visual&gt;
+    &lt;/link&gt;
+  &lt;/model&gt;
+&lt;/sdf&gt;
+</code></pre>
+<p>Vamos criar agora um arquivo <code>model.config</code></p>
+<pre><code>gedit model.config
+</code></pre>
+<p>Copie e cole o seguinte código no arquivo criado:</p>
+<pre><code>&lt;?xml version='1.0'?&gt;
+
+&lt;model&gt;
+  &lt;name&gt;box&lt;/name&gt;
+  &lt;version&gt;1.0&lt;/version&gt;
+  &lt;sdf &gt;model.sdf&lt;/sdf&gt;
+
+  &lt;author&gt;
+    &lt;name&gt;me&lt;/name&gt;
+    &lt;email&gt;somebody@somewhere.com&lt;/email&gt;
+  &lt;/author&gt;
+
+  &lt;description&gt;
+    A simple Box.
+  &lt;/description&gt;
+&lt;/model&gt;
+</code></pre>
+<p>Agora, vamos criar uma model em formato cilíndrico</p>
+<pre><code>cd ~/gazebo_plugin_tutorial/models/cylinder
+gedit model.sdf
+</code></pre>
+<p>Copie e cole o seguinte código no arquivo <code>model.sdf</code> criado</p>
+<pre><code>&lt;?xml version='1.0'?&gt;
+&lt;sdf version ='1.6'&gt;
+  &lt;model name ='cylinder'&gt;
+    &lt;pose&gt;1 2 0 0 0 0&lt;/pose&gt;
+    &lt;link name ='link'&gt;
+      &lt;pose&gt;0 0 .5 0 0 0&lt;/pose&gt;
+      &lt;collision name ='collision'&gt;
+        &lt;geometry&gt;
+          &lt;cylinder&gt;&lt;radius&gt;0.5&lt;/radius&gt;&lt;length&gt;1&lt;/length&gt;&lt;/cylinder&gt;
+        &lt;/geometry&gt;
+      &lt;/collision&gt;
+      &lt;visual name='visual'&gt;
+        &lt;geometry&gt;
+          &lt;cylinder&gt;&lt;radius&gt;0.5&lt;/radius&gt;&lt;length&gt;1&lt;/length&gt;&lt;/cylinder&gt;
+        &lt;/geometry&gt;
+      &lt;/visual&gt;
+    &lt;/link&gt;
+  &lt;/model&gt;
+&lt;/sdf&gt;
+</code></pre>
+<p>Vamos criar agora o arquivo <code>model,config</code></p>
+<pre><code>gedit model.config
+</code></pre>
+<p>Copie e cole o seguinte código no arquivo criado:</p>
+<pre><code>&lt;?xml version='1.0'?&gt;
+
+&lt;model&gt;
+  &lt;name&gt;cylinder&lt;/name&gt;
+  &lt;version&gt;1.0&lt;/version&gt;
+  &lt;sdf&gt;model.sdf&lt;/sdf&gt;
+
+  &lt;author&gt;
+    &lt;name&gt;me&lt;/name&gt;
+    &lt;email&gt;somebody@somewhere.com&lt;/email&gt;
+  &lt;/author&gt;
+
+  &lt;description&gt;
+    A simple cylinder.
+  &lt;/description&gt;
+&lt;/model&gt;
+</code></pre>
+<h3 id="executando-o-plugin_1">Executando o Plugin</h3>
+<p>Tenha certeza de que o <code>GAZEBO_MODEL_PATH_</code> se refere ao novo diretório dos models criado</p>
+<pre><code>export GAZEBO_MODEL_PATH=$HOME/gazebo_plugin_tutorial/models:$GAZEBO_MODEL_PATH
+</code></pre>
+<p>Adicione o caminho da biblioteca para o <code>GAZEBO_PLUGIN_PATH</code></p>
+<pre><code>export GAZEBO_PLUGIN_PATH=$HOME/gazebo_plugin_tutorial/build:$GAZEBO_PLUGIN_PATH
+</code></pre>
+<p>E crie um arquivo World SDF onde se encontrará o plugin</p>
+<pre><code>cd ~/gazebo_plugin_tutorial
+gedit factory.world
+</code></pre>
+<p>Copie o seguinte código e cole no arquivo <code>factory.world</code> criado.</p>
+<pre><code>&lt;?xml version="1.0"?&gt;
+&lt;sdf version="1.4"&gt;
+  &lt;world name="default"&gt;
+    &lt;include&gt;
+      &lt;uri&gt;model://ground_plane&lt;/uri&gt;
+    &lt;/include&gt;
+
+    &lt;include&gt;
+      &lt;uri&gt;model://sun&lt;/uri&gt;
+    &lt;/include&gt;
+
+    &lt;plugin name="factory" filename="libfactory.so"/&gt;
+  &lt;/world&gt;
+&lt;/sdf&gt;
+</code></pre>
+<p>Execute agora por fim, o Gazebo!</p>
+<pre><code>gazebo ~/gazebo_plugin_tutorial/factory.world
+</code></pre>
+<p><br/></p>
+<h2 id="integracao-gazebo-ros"><em>Integração Gazebo + ROS</em></h2>
+<p><br/></p>
+<h3 id="entendendo-a-organizacao-interna">Entendendo a organização interna</h3>
+<p>É possível alcançar uma integração do ROS com o Gazebo. Uma série de packages do ROS chamadas de <code>gazebo_ros_package</code> permitem esta possibilidade. Eles providenciam as interfaces necessárias para simular um robô no Gazebo, utilizando por exemplo, ROS messages e services.</p>
+<p><br/>
+Podemos acessar o Gazebo integrando-o ao ROS por meio de alguns comandos, sendo os principais deles os seguintes:</p>
+<pre><code>rosrun gazebo_ros gazebo
+roslaunch gazebo_ros &lt;arq.launch&gt;
+</code></pre>
+<p>Mas antes de começarmos a utilizar as propriedades do ROS ao Gazebo, precisamos primeiro entender a hierarquia dos arquivos de models, para que posteriormente seja possível realizarmos premissas.
+<br/>
+Tudo o que diz a respeito ao model do seu robô, está localizado na package<code>/MYROBOT_description</code>. E todos os arquivos launch e worlds estão localizados na package <code>/MYROBOT_gazebo</code>. Substitui-se "MYROBOT" pelo nome do nosso robô em letras minúsculas. Abaixo há uma representação dessa hierarquia.</p>
+<pre><code>../catkin_ws/src
+    /MYROBOT_description
+        package.xml
+        CMakeLists.txt
+        /urdf
+            MYROBOT.urdf
+        /meshes
+            mesh1.dae
+            mesh2.dae
+            ...
+        /materials
+        /cad
+    /MYROBOT_gazebo
+        /launch
+            MYROBOT.launch
+        /worlds
+            MYROBOT.world
+        /models
+            world_object1.dae
+            world_object2.stl
+            world_object3.urdf
+        /materials
+        /plugins
+</code></pre>
+<h3 id="criando-um-mundo-integrado-ao-ros">Criando um mundo integrado ao ROS</h3>
+<p>Vamos então criar estes diretórios no nosso catkin workspace</p>
+<pre><code>cd ~/catkin_ws/src
+catkin_create_pkg robos_description
+cd robos_description
+mkdir urdf meshes materials cad
+cd ..
+catkin_create_pkg robos_gazebo
+cd robos_gazebo
+mkdir launch worlds models materials plugins
+</code></pre>
+<p>E agora, vamos criar um mundo costumizado integrado ao ROS. Primeiro, vamos criar um arquivo launch que iniciará o mundo no Gazebo</p>
+<pre><code>cd launch
+gedit robo.launch
+</code></pre>
+<p>Copie e cole o seguinte código no arquivo <code>robo.launch</code> criado</p>
+<pre><code>&lt;launch&gt;
+  &lt;!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched --&gt;
+  &lt;include file="$(find gazebo_ros)/launch/empty_world.launch"&gt;
+    &lt;arg name="world_name" value="$(find robo_gazebo)/worlds/robo.world"/&gt;
+    &lt;!-- more default parameters can be changed here --&gt;
+  &lt;/include&gt;
+&lt;/launch&gt;
+</code></pre>
+<p>E agora, vamos criar um arquivo <code>.world</code></p>
+<pre><code>cd ..
+cd worlds
+gedit robo.world
+</code></pre>
+<p>Copie e cole o seguinte código no arquivo <code>robo.world</code> criado</p>
+<pre><code>&lt;?xml version="1.0" ?&gt;
+&lt;sdf version="1.4"&gt;
+  &lt;world name="default"&gt;
+    &lt;include&gt;
+      &lt;uri&gt;model://ground_plane&lt;/uri&gt;
+    &lt;/include&gt;
+    &lt;include&gt;
+      &lt;uri&gt;model://sun&lt;/uri&gt;
+    &lt;/include&gt;
+    &lt;include&gt;
+      &lt;uri&gt;model://gas_station&lt;/uri&gt;
+      &lt;name&gt;gas_station&lt;/name&gt;
+      &lt;pose&gt;-2.0 7.0 0 0 0 0&lt;/pose&gt;
+    &lt;/include&gt;
+  &lt;/world&gt;
+&lt;/sdf&gt;
+</code></pre>
+<p>É possível agora executar o mundo criado.</p>
+<pre><code>. ~/catkin_ws/devel/setup.bash
+roslaunch robos_gazebo robo.launch
+</code></pre>
+<h3 id="usando-o-roslaunch-para-spawnar-robos">Usando o roslaunch para <em>spawnar</em> robôs</h3>
+<p>Utilizando o roslaunch, conseguimos spawnar robôs em um mundo integrado. Entretanto, o ROS descreve os elementos de um robô pelo formato URDF, diferente daquele utilizado pelo Gazebo, o SDF. Portanto, é necessário utilizar um model <code>model.urdf</code> para poder usá-lo integrado ao ROS. Existe também a possibilidade da conversão do formato SDF para o URDF por meio da package pysdf criado por andreasBihlmaier. Segue-se os passos para a conversão:</p>
+<pre><code>cd ~/catkin_ws/src
+git clone https://github.com/andreasBihlmaier/pysdf
+cd ..
+catkin_make
+source ~/catkin_ws/devel/setup.bash
+</code></pre>
+<p>Agora, vá para o diretório onde está o arquivo <code>model.sdf</code> e abra um terminal no local. E em seguida, execute</p>
+<pre><code>rosrun pysdf sdf2urdf.py model.sdf model.urdf
+</code></pre>
+<p>Por fim, podemos <em>spawnar</em> o robô agora convertido, mas o mova primeiramente para o diretório <code>urdf</code> em <code>robos_description</code></p>
+<pre><code>rosrun gazebo_ros spawn_model -file `rospack find robos_description`/urdf/robo.urdf -urdf -x 0 -y 0 -z 1 -model robo
+</code></pre>
+<h3 id="ros-puglin-para-camera-de-profundidade">ROS Puglin para câmera de profundidade</h3>
+<p>Dessa vez, vamos aprender a usar plugins de sensores do ROS. No caso, vamos conectar a câmera de profundidade do Gazebo com o plugin do ROS. 
+<br>
+Primeiramente, vamos fazer o download do <code>model.sdf</code> do sensor kinect</p>
+<pre><code>wget http://github.com/osrf/gazebo_tutorials/raw/master/ros_depth_camera/files/kinect.zip
+</code></pre>
+<p>Em seguida, abra o <code>model.sdf</code> da câmera e adicione os códigos do plugin seguintes. No caso, adicione dentro da tag <code>&lt;sensor&gt;</code> imediatamente após o fechamento da tag <code>&lt;/camera&gt;</code></p>
+<pre><code>        &lt;plugin name="camera_plugin" filename="libgazebo_ros_openni_kinect.so"&gt;
+          &lt;baseline&gt;0.2&lt;/baseline&gt;
+          &lt;alwaysOn&gt;true&lt;/alwaysOn&gt;
+          &lt;!-- Keep this zero, update_rate in the parent &lt;sensor&gt; tag
+            will control the frame rate. --&gt;
+          &lt;updateRate&gt;0.0&lt;/updateRate&gt;
+          &lt;cameraName&gt;camera_ir&lt;/cameraName&gt;
+          &lt;imageTopicName&gt;/camera/color/image_raw&lt;/imageTopicName&gt;
+          &lt;cameraInfoTopicName&gt;/camera/color/camera_info&lt;/cameraInfoTopicName&gt;
+          &lt;depthImageTopicName&gt;/camera/depth/image_raw&lt;/depthImageTopicName&gt;
+          &lt;depthImageCameraInfoTopicName&gt;/camera/depth/camera_info&lt;/depthImageCameraInfoTopicName&gt;
+          &lt;pointCloudTopicName&gt;/camera/depth/points&lt;/pointCloudTopicName&gt;
+          &lt;frameName&gt;camera_link&lt;/frameName&gt;
+          &lt;pointCloudCutoff&gt;0.5&lt;/pointCloudCutoff&gt;
+          &lt;pointCloudCutoffMax&gt;3.0&lt;/pointCloudCutoffMax&gt;
+          &lt;distortionK1&gt;0&lt;/distortionK1&gt;
+          &lt;distortionK2&gt;0&lt;/distortionK2&gt;
+          &lt;distortionK3&gt;0&lt;/distortionK3&gt;
+          &lt;distortionT1&gt;0&lt;/distortionT1&gt;
+          &lt;distortionT2&gt;0&lt;/distortionT2&gt;
+          &lt;CxPrime&gt;0&lt;/CxPrime&gt;
+          &lt;Cx&gt;0&lt;/Cx&gt;
+          &lt;Cy&gt;0&lt;/Cy&gt;
+          &lt;focalLength&gt;0&lt;/focalLength&gt;
+          &lt;hackBaseline&gt;0&lt;/hackBaseline&gt;
+        &lt;/plugin&gt;
+</code></pre>
+<p>Agora, execute o Gazebo integrado ao ROS</p>
+<pre><code>roslaunch gazebo_ros empty_world.launch
+</code></pre>
+<p>Com o Gazebo aberto, vá em "Add_Path" e adicione o caminho do diretório onde se encontra o <code>model.sdf</code> do seu sensor. Adicione também alguns objetos a frente da câmera, para que possam ser analisados.
+<br/>
+Por fim, vamos observar a análise da câmera utilizando o simulador RViz</p>
+<pre><code>rosrun rviz rviz
+</code></pre>
+<p>Com o simulador aberto, vá em "Fixed Frame" e coloque <code>camera_link</code>. Adicione também um display "PointCloud2" e em Topic coloque <code>/camera/depth/points</code></p>
+<h3 id="simulacao-de-desvios-de-obstaculos">Simulação de desvios de obstáculos</h3>
+<p>Vamos programar um robô que que evite obstáculos. Para isso, vamos utilizar o modelo criado por <em>saharshleo</em>. 
+<br/>
+Primeiramente, iremos realizar a criação dos arquivos necessários. Criaremos uma package específica para este sistema.</p>
+<pre><code>cd ~/catkin_ws/src
+catkin_create_pkg desvio_de_obstaculos
+</code></pre>
+<p>Em seguida, no diretório src, criaremos dois <em>scripts</em> para o desvio de obstáculos e a leitura do sensor.</p>
+<pre><code>cd ~/desvio_de_obstaculos/src
+wget https://github.com/saharshleo/obstacleAvoidanceRobot/blob/master/catkin_ws/src/motion_plan/scripts/obstacle_avoidance.py
+wget https://github.com/saharshleo/obstacleAvoidanceRobot/blob/master/catkin_ws/src/motion_plan/scripts/reading_laser.py
+</code></pre>
+<p>Após feitas as instalações, é necessário alterar as linhas do <code>CMakeLists.txt</code>. Descomente, altere e/ou adicione as seguintes linhas:</p>
+<pre><code>cmake_minimum_required(VERSION 3.0.2)
+project(desvio_de_obstaculos)
+
+find_package(catkin REQUIRED COMPONENTS
+  geometry_msgs
+  rospy
+  sensor_msgs
+  std_msgs
+)
+
+include_directories(
+# include
+ ${catkin_INCLUDE_DIRS}
+)
+</code></pre>
+<p>Vamos agora, fazer a compilação da nova package criada</p>
+<pre><code>cd
+cd catkin_ws
+catkin_make desvio_de_obstaculos
+</code></pre>
+<p>Agora, vamos adicionar os arquivos de descrição dos models e world. Para isso, vamos para o diretório <code>robos_description</code> criado anteriormente.</p>
+<pre><code>cd ~/robo_description/urdf
+wget https://github.com/saharshleo/obstacleAvoidanceRobot/blob/master/simulation_ws/src/robot_description/urdf/gazebo.xacro
+wget https://github.com/saharshleo/obstacleAvoidanceRobot/blob/master/simulation_ws/src/robot_description/urdf/macro.xacro
+wget https://github.com/saharshleo/obstacleAvoidanceRobot/blob/master/simulation_ws/src/robot_description/urdf/materials.xacro
+wget https://github.com/saharshleo/obstacleAvoidanceRobot/blob/master/simulation_ws/src/robot_description/urdf/robot.xacro
+</code></pre>
+<p>Abra o arquivo <code>robot.xacro</code></p>
+<pre><code>gedit robot.xacro
+</code></pre>
+<p>E edite as linhas 6,7 e 8 para que fiquem da seguinte maneira:</p>
+<pre><code>&lt;xacro:include filename="$(find robos_description)/urdf/materials.xacro" /&gt;  
+&lt;xacro:include filename="$(find robos_description)/urdf/gazebo.xacro" /&gt;
+&lt;xacro:include filename="$(find robos_description)/urdf/macro.xacro" /&gt;
+</code></pre>
+<p>Agora, vamos criar um arquivo launch para execução da simulação</p>
+<pre><code>cd ~/catkin_ws/src/robos_gazebo/launch
+wget https://github.com/saharshleo/obstacleAvoidanceRobot/blob/master/simulation_ws/src/robot_description/launch/spawn.launch
+wget https://github.com/saharshleo/obstacleAvoidanceRobot/blob/master/simulation_ws/src/my_worlds/launch/world2.launch
+</code></pre>
+<p>Abra o arquivo <code>world2.launch</code></p>
+<pre><code>gedit world2.launch
+</code></pre>
+<p>E edite a linha 11 para que fique da seguinte maneira:</p>
+<pre><code>&lt;arg name="world_name" value="$(find robos_gazebo)/worlds/$(arg world).world"/&gt;
+</code></pre>
+<p>Para finalizar o adicionamento, vamos criar o arquivo <code>.world</code></p>
+<pre><code>cd ..
+cd worlds
+wget https://github.com/saharshleo/obstacleAvoidanceRobot/blob/master/simulation_ws/src/my_worlds/worlds/world02.world
+</code></pre>
+<p>E agora podemos executar a simulação!</p>
+<pre><code>roslaunch robos_gazebo world2.launch
+</code></pre>
+<p>Em um outro terminal, execute o seguinte comando, para spawnar o robô</p>
+<pre><code>roslaunch robos_gazebo spawn.launch
+</code></pre>
+<p>E por fim, vamos executar o código de desvio de obstáculos</p>
+<pre><code>rosrun desvio_de_obstaculos obstacle_avoidance.py
+</code></pre>
+<h3 id="simulacao-utilizando-px4-e-mavros">Simulação utilizando PX4 e MAVROS</h3>
+<p>Outra forma de usarmos a integração do ROS ao Gazebo, é utilizando códigos open source como a PX4 e uma node de comunicação como o MAVROS. Vamos então, trabalhar com ambos.
+<br/>
+Primeiramente, precisamos fazer a instalação do Firmware da PX4 e a instalação do MAVROS</p>
+<pre><code>sudo apt-get install ros-melodic-mavros ros-melodic-mavros-extras
+wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts install_geographiclib_datasets.sh
+sudo bash ./install_geographiclib_datasets.sh
+rm ./install_geographiclib_datasets.sh
+cd
+mkdir ~/src
+cd ~src
+git clone https://github.com/Skyrats/Firmware.git --recursive
+</code></pre>
+<p>Agora, vamos criar uma ROS Node em Python que publica um setpoint para uma posição desejada no topic <code>mavros/setpoint_position/local</code>. Para isso, vamos criar uma nova package para o sistema.</p>
+<pre><code>cd ~/catkin_ws/src
+catkin_create_pkg square std_msgs mavros_msgs roscpp rospy
+cd ~/square/src
+wget https://raw.githubusercontent.com/risckaust/risc-documentations/master/src/gazebo-rover/square.py
+chmod +x square.py
+</code></pre>
+<p>Abra o arquivo <code>square.py</code></p>
+<pre><code>gedit square.py
+</code></pre>
+<p>E edite a seguinte linha, conforme mostrado</p>
+<pre><code>sp_pub = rospy.Publisher('mavros/setpoint_position/local', PoseStamped , queue_size=1)
+</code></pre>
+<p>Em seguida, podemos executar nossa simulação. Entretanto, precisamos inicializá-lo com o "ROS Wrappers"</p>
+<pre><code>cd ~/src/Firmware
+DONT_RUN=1 make px4_sitl_default gazebo
+source ~/catkin_ws/devel/setup.bash  
+source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
+export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)
+export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)/Tools/sitl_gazebo
+roslaunch px4 mavros_posix_sitl.launch
+rosrun square square.py
 </code></pre>
               
             </div>
